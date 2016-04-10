@@ -25,16 +25,30 @@ function newUser(ID) {
     // Have to add in methods for updating location
     //LOCATION SHOULDN'T BE DIRECTLY ACCESSIBLE. IT SHOULD BE ENCASED IN A FUNCTION BUT HOW DO YOU DO THAT WITH TWO USERS.
     //For now we'll just have it be a function
-    this.location = function(loc) {
-        return loc; //Returns a location object for passing to distance function
+    this.france = function(loc) {
+        //return loc; //Returns a location object for passing to distance function
+        document.getElementById("demo").innerHTML = 
+            "Location: " + loc.coords.latitude + ", " + loc.coords.longitude;
     };
     this.getLocation = function() {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(this.location);
+            navigator.geolocation.getCurrentPosition(this.france);
         } else {
-            return "<p>Geolocation is not supported by this browser.</p>";
+            document.getElementById("demo").innerHTML =  
+                "<p>Geolocation is not supported by this browser.</p>";
         }
     };
+    
+    this.distance = function(user1) {
+        var distance, lat0, long0, lat1, long1;
+        lat0 = this.getLocation().coords.latitude;
+        long0 = this.getLocation().coords.longitude;
+        lat1 = user1.getLocation().coords.latitude;
+        long1 = user1.getLocation().coords.longitude;
+        distance = Math.sqrt( Math.pow( (lat1 - lat2), 2 ) + 
+        Math.pow( (long1 - long0) , 2) );
+        return distance;
+    }
     
     // swipeRight moves the first element of closeList
     // and makes it the last element of matchList
