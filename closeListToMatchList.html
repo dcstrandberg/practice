@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1 id="headline"></h1>
+
+<p id="demo"></p>
+
+
+<script src="userPrototypeTest.js"></script>
+<script>
+    var i = 0, david = new newUser(1001, "David", "M", "F"), text = "";
+for ( i=0; i<5; i++ ) {
+    // generate randomly assigned UIDs, set names to Jen, sex to F, pref to M
+    david.closeList[i] = new newUser( Math.floor( Math.random() * 1001 ), "Jen", "F", "M" );
+}
+
+/* 
+Referring to the other users by closeList[i] (AKA index #), then we'll run into real trouble when a user gets popped from the list. Unless we updated closeList and re-rendered the page every time that it was interacted w/. That would take care of reassigning the proper functions to the onclick()s of the submit buttons.
+Every time we split/slice/whatever a user from the closeList[], if we just rerender all the page-entries instead of just the one paragraph, then it should work. 
+*/
+
+document.getElementById("headline").innerHTML = david.closeList.length +
+    " Users Close To You";
+for ( i=0; i<5; i++ ) {
+    //Create a new paragraph for each entry w/ the UID as the <p> ID
+    text += "<p id ='" + david.closeList[i].ID + "'>User #" + 
+    //log the objects' UIDs & create Swipe buttons next to each entry
+    david.closeList[i].ID + " was last active on " + 
+    david.closeList[i].lastActive + 
+    " <input type='submit' value='Swipe Left' " + 
+    //Each buttons submit function takes the closeList entry at i as a parameter
+    "onclick='david.swipeLeft(david.closeList[" + i + "])'>" + 
+    " <input type='submit' value='Swipe Right' " + 
+    "onclick='david.swipeRight(david.closeList[" + i + "])'></p>";
+}
+//Output the created string to the webpage
+document.getElementById("demo").innerHTML = text;
+
+</script>
+
+</body>
+</html>
+
