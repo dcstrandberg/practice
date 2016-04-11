@@ -6,8 +6,12 @@
 
 <p>Click HERE to see your location.</p>
 <button id="locationButton" onclick="whereAmI()">Where Am I?</button>
+<br />
+<button id="showGeo" onclick="showInfo()">What's the object?</button>
+
 
 <p id="demo"></p>
+<p id="geoinfo"></p>
 
 <script src="locationTesting.js"></script>
 <script>
@@ -32,6 +36,18 @@ function whereAmI() {
     document.getElementById("demo").innerHTML = "Loading..."
     var david = new newUser(1001);
     david.getLocation();
+    return;
+}
+function showInfo() {
+    var x, i, geoText="", coordObj = geoInfo.coords;
+    for (x in geoInfo) {
+        geoText += ( geoInfo[x] + "<br />" );           
+    }
+    for (x in coordObj) {
+        geoText += ( coordObj[x] + "<br />");
+    }
+    document.getElementById("geoinfo").innerHTML = geoText;
+    return;
 }
     /*
     "User location: <br>Latitude:  " + whereabouts.coords.latitude + 

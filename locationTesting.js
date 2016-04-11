@@ -2,6 +2,7 @@
 I should create some sort of renderList function that will output the updated closeList[] to the webpage. 
 I also need to add the code to swipeLeft() to make it splice/split the user from the closeList[]. I also need to make closeList[] sort based on distance.
 */
+var geoInfo;
 function newUser(ID) {
     this.ID = ID;
     this.location = []; //Eventually we'll want to make location private somehow
@@ -25,18 +26,21 @@ function newUser(ID) {
     // Have to add in methods for updating location
     //LOCATION SHOULDN'T BE DIRECTLY ACCESSIBLE. IT SHOULD BE ENCASED IN A FUNCTION BUT HOW DO YOU DO THAT WITH TWO USERS.
     //For now we'll just have it be a function
-    this.france = function(loc) {
+    this.showLocation = function(loc) {
         //return loc; //Returns a location object for passing to distance function
         document.getElementById("demo").innerHTML = 
             "Location: " + loc.coords.latitude + ", " + loc.coords.longitude;
+        geoInfo = loc;
+        return;
     };
     this.getLocation = function() {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(this.france);
+            navigator.geolocation.getCurrentPosition(this.showLocation);
         } else {
             document.getElementById("demo").innerHTML =  
                 "<p>Geolocation is not supported by this browser.</p>";
         }
+    return;
     };
     
     this.distance = function(user1) {
