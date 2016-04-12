@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #eeeeee;  
+        }
+        header {
+            width: 100%;
+            height: 150px;
+            background: #ccffff url("images/logo.png") no-repeat center top;
+            background-size: 450px 100px;
+            border-bottom: 4px solid #f08a6f;
+            margin: 0px;
+        }
+        /*nav {
+            background-color: #aaFFaa;
+            position: fixed;
+            width: 100%;
+            height: 50px; 
+            margin: 0px;
+        }*/
+        
+        ul.navbar li {            
+            list-style-type: none;
+            display: inline;
+        }
+        img.icon {
+            height: 40px;
+            width: 40px; 
+            padding: 5px;
+
+        }
+        fieldset {
+            border: 1px groove lawngreen;
+        }
+        #gender {
+            background-image: glassicon.png;
+            
+            }
+    </style>
+</head>
+<body>
+
+<header>
+<nav>
+    <div style="position: absolute 100px 850px 150px 600px;"> <!-- This doesn't work and I don't know why...-->
+     <ul class="navbar">
+        <li><img class="icon" src="images/cLogo.png"></li>
+        <li><img class="icon" src="images/chat.png"></li>
+    </ul>
+    </div>
+</nav>
+</header>
+
+        
+
+<!--Standard navbar would be here -->
+
+<h1>Settings</h1>
+<!-- 
+    onchange event would be used to save form data automatically when the user is done editing it. It triggers after a user has changed a form value, when the form loses focus.
+-->
+<fieldset>
+    <legend>User Info:</legend>
+    First Name: <br />
+    <input type="text" id="firstname" placeholder="David" required="required"><br />
+    Last Name: <br />
+    <input type="text" id="lastname" placeholder="S"><br />
+    Age (Must be 18+): <br />
+    <input type="number" id="age" min="17" max="88"><br />
+    Gender: <br />
+    <input type="checkbox" id="gender" placeholder="true"><br />
+</fieldset>
+
+</body>
+</html>
