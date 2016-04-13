@@ -1,55 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-        body {
-            background-color: #eeeeee;  
-        }
-        header {
-            width: 100%;
-            height: 150px;
-            background: #ccffff url("images/logo.png") no-repeat center top;
-            background-size: 450px 100px;
-            border-bottom: 4px solid #f08a6f;
-            margin: 0px;
-        }
-        /*nav {
-            background-color: #aaFFaa;
-            position: fixed;
-            width: 100%;
-            height: 50px; 
-            margin: 0px;
-        }*/
-        
-        ul.navbar li {            
-            list-style-type: none;
-            display: inline;
-        }
-        img.icon {
-            height: 40px;
-            width: 40px; 
-            padding: 5px;
-
-        }
-        fieldset {
-            border: 1px groove lawngreen;
-        }
-        #gender {
-            background-image: glassicon.png;
-            
-            }
-    </style>
+<link rel="stylesheet" type="text/css" href="settingsPageStyle.css">
 </head>
 <body>
 
 <header>
 <nav>
-    <div style="position: absolute 100px 850px 150px 600px;"> <!-- This doesn't work and I don't know why...-->
+    <span class="spacer"></span>
      <ul class="navbar">
         <li><img class="icon" src="images/cLogo.png"></li>
         <li><img class="icon" src="images/chat.png"></li>
     </ul>
-    </div>
+    <span class="spacer"></span>
 </nav>
 </header>
 
@@ -70,7 +33,7 @@
     Age (Must be 18+): <br />
     <input type="number" id="age" min="17" max="88"><br />
     Gender: <br />
-    <input type="checkbox" id="gender" placeholder="true"><br />
+    <input type="search" id="gender" placeholder=""><br />
 </fieldset>
 
 </body>
