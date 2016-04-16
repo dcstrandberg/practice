@@ -2,29 +2,45 @@ body {
     background-color: #eeeeee;  
 }
 header {
+    /*Set the header to be at the top of the page even when scrolling*/
+    position: fixed;
+    z-index: 0; /*keep it below the navbar, though*/
+    
     width: 100%;
     height: 150px;
+    /*Place the logo in the middle of header*/
     background: #ccffff url("images/logo.png") no-repeat center top;
     background-size: 450px 100px;
     margin: 0px;
     border: 1px solid black;
 }
 nav {
-    border/*-bottom*/: 4px solid #f08a6f;
+    /*Fix nav bar at top of viewport, but placed at bottom of header*/
+    position: fixed;
+    bottom: 0;
+    z-index: 1; /* Place in front of header*/
+    /*Border between header/nav and rest of page*/
+    border-bottom: 4px solid #f08a6f;
+    
     width: 100%;
     height: 50px; 
-    padding-top: 100px;
+    /*padding-top: 100px; I DON'T THINK WE NEED THIS*/
     /*padding-left: 66%;*/
 }
 .spacer {
+    display: inline-block;
     border: 1px dashed #0000aa;
     width: 100px;
     height: inherit;
+    /*So now we don't need float left since we're doing inline-blocks
     float: left;
+    */
 }        
-ul.navbar li {           
+ul.navbar {           
     list-style-type: none;
     display: inline;
+}
+ul.navbar li {
     padding: 0px;
     border: 1px solid black;
 }
@@ -36,7 +52,24 @@ img.icon {
 
 }
 fieldset {
-    border: 3px ridge lawngreen;
+    position: relative;
+    width: 100%;
+    border: 3px solid grey;
+    border-radius: 4px;
+    background-color: lightgrey;
+    color: black;
+}
+input {
+    width: 100%;
+    border: 3px solid grey;
+    border-radius: 4px;    
+    font-size: 16px;
+}
+input[type=text], input[type=number], input[type=search] {
+    padding: 12px 20px;
+    margin: 8px 0px;
+    box-sizing: border-box;
+    
 }
 #gender {
     background: #FFFFFF url("images/glassicon.png") no-repeat left top;
