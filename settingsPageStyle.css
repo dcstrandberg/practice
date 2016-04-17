@@ -1,6 +1,6 @@
 body {
     background-color: #eeeeee;  
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 header {
     /*Set the header to be at the top of the page even when scrolling*/
@@ -10,7 +10,7 @@ header {
     z-index: 10; /*keep it below the navbar, though*/
     
     width: 100%;
-    height: 150px;
+    height: 120px;
     /*Place the logo in the middle of header*/
     background: #ccffff url("images/logo.png") no-repeat center top;
     background-size: 450px 100px;
@@ -19,8 +19,8 @@ header {
 }
 nav {
     /*Fix nav bar at top of viewport, but placed at bottom of header*/
-    position: fixed;
-    top: 0;
+    position: absolute;
+    bottom: 0;
     z-index: 11; /* Place in front of header*/
     /*Border between header/nav and rest of page*/
     border-bottom: 4px solid #f08a6f;
@@ -40,25 +40,26 @@ nav {
 } */       
 ul.navbar {           
     list-style-type: none;
-    position: fixed;
+    position: absolute;
     right: 33%;
-    top: 100px;
+    bottom: -4px;
     margin: 0px;
 }
 ul.navbar li {
     display: inline-block;
     padding: 0px;
-    margin-bottom: 0px;
-    /*border: 1px solid black;*/
+    margin: 0px;
+    /*border: 3px dashed green;*/
 }
 ul.navbar li.active {
-    border-bottom: 4px solid #ff2a1f;
+    border-bottom: 4px solid #ff0a00;
 }
 img.icon {
     height: 40px;
     width: 40px; 
     padding: 5px;
-    border: 1px solid black;
+    padding-bottom: 0px;
+    /*border: 1px solid black;*/
     margin: 0px;
 
 }
@@ -69,7 +70,7 @@ h1.title {
 fieldset {
     position: relative;
     margin: 20px;
-    width: 100%;
+    width: 90%;
     border: 3px solid grey;
     border-radius: 4px;
     background-color: lightgrey;
@@ -86,6 +87,9 @@ input[type=text], input[type=number], input[type=search] {
     margin: 8px 0px;
     box-sizing: border-box;
     
+}
+input:focus {
+    background-color: #f08a6f;
 }
 #gender {
     background: #FFFFFF url("images/glassicon.png") no-repeat;
