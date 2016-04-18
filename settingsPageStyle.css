@@ -1,5 +1,5 @@
 body {
-    background-color: #eeeeee;  
+    background-color: #efefef;  
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 header {
@@ -7,43 +7,48 @@ header {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 10; /*keep it below the navbar, though*/
+    /*When we scroll, we want the header to stay above everything*/
+    z-index: 10; 
     
     width: 100%;
     height: 120px;
-    /*Place the logo in the middle of header*/
-    background: #ccffff url("images/logo.png") no-repeat center top;
-    background-size: 450px 100px;
+    background: linear-gradient(#ccffff, #efefef);
     margin: 0px;
-    /*border: 1px solid black;*/
-}
-nav {
-    /*Fix nav bar at top of viewport, but placed at bottom of header*/
-    position: absolute;
-    bottom: 0;
-    z-index: 11; /* Place in front of header*/
-    /*Border between header/nav and rest of page*/
+    padding: 0px;
     border-bottom: 4px solid #f08a6f;
-    
-    margin: 0px;
-    width: 100%;
-    height: 50px; 
-    clear: both;
 }
-/*.spacer {
-    display: inline-block;
-    border: 1px dashed #0000aa;
-    width: 100px;
-    height: inherit;
-    float: left;
-    
-} */       
-ul.navbar {           
-    list-style-type: none;
+/*div#logo {
     position: absolute;
-    right: 33%;
+    top: 0px;
+    min-width: 450px;
+    margin-left: 25%;
+    height: 100px;
+    padding: 0px;
+    border: 1px solid blue;
+}*/
+img#logo {
+    /*border: 1px solid red;*/
+    min-width: 450px;
+    margin-left: 150px;
+    
+    /*The image itself has a large right margin, so no need for extra*/
+    margin-right: 0;
+    display: inline-block;
+}
+/*NAV is no longer in use in the HTML document. All attributes have been folded into <header> class */
+   
+ul.navbar {           
+    /*Unordered List Used As Menu*/
+    list-style-type: none;
+    display: inline-block;
+
+    position: absolute;
     bottom: -4px;
     margin: 0px;
+    margin-left: 10px;
+    min-width: 100px;
+    /*border: 1px solid black;*/
+
 }
 ul.navbar li {
     display: inline-block;
@@ -59,11 +64,10 @@ img.icon {
     width: 40px; 
     padding: 5px;
     padding-bottom: 0px;
-    /*border: 1px solid black;*/
     margin: 0px;
 
 }
-h1.title {
+h2.title {
     margin-top: 160px;
     margin-left: 20px;
 }
@@ -71,7 +75,7 @@ fieldset {
     position: relative;
     margin: 20px;
     width: 90%;
-    border: 3px solid grey;
+    border: 2px solid grey;
     border-radius: 4px;
     background-color: lightgrey;
     color: black;
@@ -81,6 +85,7 @@ input {
     border: 3px solid grey;
     border-radius: 4px;    
     font-size: 16px;
+    outline: none;
 }
 input[type=text], input[type=number], input[type=search] {
     padding: 12px 20px;
@@ -89,11 +94,26 @@ input[type=text], input[type=number], input[type=search] {
     
 }
 input:focus {
-    background-color: #f08a6f;
+    border-color: #f08a6f;
+    
 }
-#gender {
+#search {
     background: #FFFFFF url("images/glassicon.png") no-repeat;
     background-size: 30px 30px;
     background-position: 10px 6px;
     padding-left: 58px;
+}
+ul#genderButton {
+    list-style: none;
+    width: 100%;
+    margin: auto;
+    border: 1px solid black;
+}
+li.gender {
+    display: inline-block;
+    padding: 0px;
+
+}
+input[type=radio] {
+    width: 28px;
 }

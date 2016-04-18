@@ -6,21 +6,18 @@
 <body>
 
 <header>
-<nav>
-    <!--<span class="spacer"></span>-->
-     <ul class="navbar">
-        <li class="active"><img class="icon" src="images/cLogo.png"></li>
-        <li><img class="icon" src="images/chat.png"></li>
-    </ul>
-    <!--<span class="spacer"></span>-->
-</nav>
+    <!-- I can probably get rid of this div -->
+<!--<div id="logo">-->
+<img id="logo" src="images/logo.png" width="450px" height="100px" />
+<!--</div>-->
+<ul class="navbar">
+    <li class="active"><img class="icon" src="images/cLogo.png"></li>
+    <li><img class="icon" src="images/chat.png"></li>
+</ul>
 </header>
 
-        
 
-<!--Standard navbar would be here -->
-
-<h1 class="title">Settings</h1>
+<h2 class="title">Settings</h2>
 <!-- 
     onchange event would be used to save form data automatically when the user is done editing it. It triggers after a user has changed a form value, when the form loses focus.
 -->
@@ -32,8 +29,15 @@
     <input type="text" id="lastname" ><br />
     Age (Must be 18+): <br />
     <input type="number" id="age" min="17" max="88"><br />
+    Search: <br />
+    <input type="search" id="search"><br />
     Gender: <br />
-    <input type="search" id="gender" placeholder=""><br />
+    <ul id="genderButton">
+    <li class="gender">Female</li>  
+    <li class="gender"><input type="radio" name="gender" value="female"></li>
+    <li class="gender"><input type="radio" name="gender" value="male"></li> 
+    <li class="gender">Male</li>
+    </ul>
 </fieldset>
 
 </body>
