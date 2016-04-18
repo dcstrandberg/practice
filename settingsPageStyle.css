@@ -17,38 +17,43 @@ header {
     padding: 0px;
     border-bottom: 4px solid #f08a6f;
 }
-/*div#logo {
+
+img#usericon {
+    /*border: 1px solid red;*/
+    display: inline-block;
     position: absolute;
+    left: 0px;
     top: 0px;
-    min-width: 450px;
-    margin-left: 25%;
-    height: 100px;
-    padding: 0px;
-    border: 1px solid blue;
-}*/
+    /*Center it vertically in the header*/
+    padding: 10px;
+}
+
 img#logo {
     /*border: 1px solid red;*/
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    padding: 10px 0px; 
     min-width: 450px;
+    /*Save room on the left for the user icon*/
     margin-left: 150px;
     
     /*The image itself has a large right margin, so no need for extra*/
     margin-right: 0;
-    display: inline-block;
 }
-/*NAV is no longer in use in the HTML document. All attributes have been folded into <header> class */
    
-ul.navbar {           
+ul.navbar {          
+    border: 1px solid black; 
     /*Unordered List Used As Menu*/
     list-style-type: none;
+    /*Placed directly after the logo with a margin. At bottom of header*/
     display: inline-block;
-
     position: absolute;
     bottom: -4px;
+    
     margin: 0px;
     margin-left: 10px;
     min-width: 100px;
-    /*border: 1px solid black;*/
-
 }
 ul.navbar li {
     display: inline-block;
@@ -68,7 +73,7 @@ img.icon {
 
 }
 h2.title {
-    margin-top: 160px;
+    margin-top: 140px;
     margin-left: 20px;
 }
 fieldset {
