@@ -21,7 +21,7 @@ header {
 img#usericon {
     /*border: 1px solid red;*/
     display: inline-block;
-    position: absolute;
+    position: relative;
     left: 0px;
     top: 0px;
     /*Center it vertically in the header*/
@@ -29,9 +29,9 @@ img#usericon {
 }
 
 img#logo {
-    /*border: 1px solid red;*/
+    /*border: 1px solid green;*/
     display: inline-block;
-    position: absolute;
+    position: relative;
     top: 0;
     padding: 10px 0px; 
     min-width: 450px;
@@ -43,7 +43,7 @@ img#logo {
 }
    
 ul.navbar {          
-    border: 1px solid black; 
+    /*border: 1px solid black;*/ 
     /*Unordered List Used As Menu*/
     list-style-type: none;
     /*Placed directly after the logo with a margin. At bottom of header*/
@@ -51,8 +51,11 @@ ul.navbar {
     position: absolute;
     bottom: -4px;
     
+    
     margin: 0px;
-    margin-left: 10px;
+    /*Keep it spaced from the nav menu*/
+    margin-left: -100px;
+    margin-right: 30px;
     min-width: 100px;
 }
 ul.navbar li {
@@ -72,7 +75,20 @@ img.icon {
     margin: 0px;
 
 }
+img#menu {
+    /*border: 1px solid red;*/
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    
+    /*Center it vertically in the header*/
+    padding: 30px 10px;
+    opacity: 0.65;
+}
+
 h2.title {
+    position: relative;
     margin-top: 140px;
     margin-left: 20px;
 }
