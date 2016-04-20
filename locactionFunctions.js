@@ -1,11 +1,12 @@
 /*This document is simply to try to get the distance function and all related functions working properly. Building the closeList should only require the functions contained herein. */
 
-var geoInfo, i=0, userList=[];
+var geoInfo, i=0, j=0, userList=[];
 
 /*First we'll generate a list of 100 users*/
 for (i=0; i<100; i++) {
     userList[i] = newUser(i);
 }
+//Then we'll check location for the first user against all the rest
 
 
 
@@ -17,6 +18,7 @@ function newUser(ID) {
     this.location = []; //Eventually we'll want to make location private somehow
     //this.lastActive = new Date;
     
+    this.blockList = []; //Add blockList of UIDs so we can check if the close user is blocked
     this.closeList = []; //Keep closeList because we'll generate it at the end
 
     // Have to add in methods for updating location
@@ -65,10 +67,20 @@ function newUser(ID) {
     this.genCloseList() = function () {
         //First clear closeList of previous value
         this.closeList = [];
-        for (i=0; i < userList.length; i++) { //in the future we'll check a database for the list of users instead
-            if ( this.distance(userList[i]) <= this.maxDistance ) {
-                //Gotta add in code to block the blocked users
-                this.closeList.push(userList[i]); //Add the current user to closeList if they're within maxDistance
+        //For every user in the "database"
+        for (i=0; i < userList.length; i++) { 
+        //in the future we'll check a database for the list of users instead.
+        
+            //If the user is close enough and NOT the user who's looking...
+            if ( this.distance(userList[i]) <= this.maxDistance && 
+                    this !== userList[i] ) {        
+
+                //If the close User doesn't match the ID of a blocked user...
+                if ( this.blockList.indexOf( userList[i].ID ) < 0 ) {
+                
+                    //THEN we can add the current user to closeList
+                    this.closeList.push(userList[i]); 
+                }
             }
         }
         //Once all the users are added to closeList, sort it with closest first
