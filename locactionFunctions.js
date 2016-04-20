@@ -41,13 +41,25 @@ function newUser(ID) {
     };
     
     this.distance = function(user1) {
-        var distance, lat0, long0, lat1, long1;
+        var distance, lat0, long0, lat1, long1, earthRadius = 6371000; //Meters
+        //Get the location coordinates for each user
         lat0 = this.getLocation().coords.latitude;
         long0 = this.getLocation().coords.longitude;
         lat1 = user1.getLocation().coords.latitude;
         long1 = user1.getLocation().coords.longitude;
-        distance = Math.sqrt( Math.pow( (lat1 - lat2), 2 ) + 
-        Math.pow( (long1 - long0) , 2) );
+        
+        //Convert lat and differences to radians
+        lat0 = lat0.toRadians();
+        lat1 = lat1.toRadians();
+        deltaLat = (lat1 - lat0).toRadians();
+        deltaLong = (long1 - long0).toRadians();
+        
+        var a = Math.sin(deltaLat/2) * Math.sin(deltaLat/2) +
+                Math.cos(lat0) * Math.cos(lat1) *
+                Math.sin(deltaLong/2) * Math.sin(deltaLong/2);
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        var distance = earthRadius * c;
+        
         return distance;
     }
     this.genCloseList() = function () {
