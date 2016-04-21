@@ -1,59 +1,28 @@
 <!DOCTYPE html>
 <html>
+<head>
+</head>
+    
 <body>
 
-<h1>User Location</h1>
+<h1>Close List</h1>
 
-<p>Click HERE to see your location.</p>
-<button id="locationButton" onclick="whereAmI()">Where Am I?</button>
+<p>Click HERE to get close to someone.</p>
+<button id="locationButton" onclick="userList[0].genCloseList()">Get Close</button>
 <br />
-<button id="showGeo" onclick="showInfo()">What's the object?</button>
+
+<p id="closelist"></p>
+<p id="error"></p>
 
 
-<p id="demo"></p>
-<p id="geoinfo"></p>
+<script src="locationFunctions.js"></script>
 
-<script src="locationTesting.js"></script>
-<script>
-/*
-function locObj() {
-    this.getLocation = function() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(this.alphabet);
-        } else {
-            document.getElementById("demo").innerHTML = 
-                "<p>Geolocation not supported...";
-        }
-    };
-    
-    this.alphabet = function(xyz) {
-        document.getElementById("demo").innerHTML = "Latitude: " + 
-            xyz.coords.latitude + "<br>Longitude: " + xyz.coords.longitude;
-    }    
-}
-*/
-function whereAmI() {
-    document.getElementById("demo").innerHTML = "Loading..."
-    var david = new newUser(1001);
-    david.getLocation();
-    return;
-}
-function showInfo() {
-    var x, i, geoText="", coordObj = geoInfo.coords;
-    for (x in geoInfo) {
-        geoText += ( geoInfo[x] + "<br />" );           
+<!--<script>
+    var i=0, userList = [];
+    for (i=0; i<100; i++) {
+    userList[i] = new newUser(i);
     }
-    for (x in coordObj) {
-        geoText += ( coordObj[x] + "<br />");
-    }
-    document.getElementById("geoinfo").innerHTML = geoText;
-    return;
-}
-    /*
-    "User location: <br>Latitude:  " + whereabouts.coords.latitude + 
-    "<br>Longitude: " + whereabouts.coords.longitude;
-    */
-</script>
+</script>-->
     
 
 </body>
