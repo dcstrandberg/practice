@@ -16,7 +16,13 @@ function newUser(ID) {
     this.distance;
     //Generate random maxDistance between .5 and 2.5 in .5 steps
     this.maxDistance = ( ( Math.floor( (Math.random() * 5 ) ) / 2) + 0.5);
-    this.location = undefined; //Eventually we'll want to make location private somehow -- Not really used at all...
+    
+    //If we set getLocation() to watch for the geolocation, we could start watching as soon as a user logs in, then turn it off after an hour of inactivity. Then we could consistently update this.location, which is how we could access the location object for the distance function -- Not currently used at all...
+    this.location = {
+        latitude: undefined,
+        longitude: undefined    
+    }; 
+    
     this.blockList = []; //Add blockList of UIDs so we can check if the close user is blocked
     this.closeList = []; //Keep closeList because we'll generate it at the end
 
@@ -28,8 +34,11 @@ function newUser(ID) {
         /*document.getElementById("demo").innerHTML = 
             "Location: " + loc.coords.latitude + ", " + loc.coords.longitude;*/
         
-        this.location = loc; //Save the location object to this.location
-        return loc; //This should get getLocation to return the location object
+        //Save the location object to this.location
+        this.location.latitude = loc.coords.latitude;
+        this.location.longitude = loc.coords.longitude;
+        
+        //return loc; //This should get getLocation to return the location object
     };
     this.getLocation = function() {
         if (navigator.geolocation) {
@@ -43,12 +52,16 @@ function newUser(ID) {
     };
     
     this.getDistance = function(user1) {
-        var dist, lat0, long0, lat1, long1, earthRadius = 6371000; //Meters
+        var dist, locObj0, locObj1, lat0, long0, lat1, long1, earthRadius = 6371000; //Meters
+        //Get the location objects for current user and possible close user
+        locObj0 = this.location;
+        locObj1 = user1.location;
+                
         //Get the location coordinates for each user
-        lat0 = this.getLocation().coords.latitude;
-        long0 = this.getLocation().coords.longitude;
-        lat1 = user1.getLocation().coords.latitude;
-        long1 = user1.getLocation().coords.longitude;
+        lat0 = locObj0.coords.latitude;
+        long0 = locObj0.coords.longitude;
+        lat1 = locObj1.coords.latitude;
+        long1 = locObj1.coords.longitude;
         
         //Convert lat and differences to radians
         lat0 = lat0.toRadians();
