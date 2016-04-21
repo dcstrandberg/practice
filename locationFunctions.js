@@ -17,11 +17,8 @@ function newUser(ID) {
     //Generate random maxDistance between .5 and 2.5 in .5 steps
     this.maxDistance = ( ( Math.floor( (Math.random() * 5 ) ) / 2) + 0.5);
     
-    //If we set getLocation() to watch for the geolocation, we could start watching as soon as a user logs in, then turn it off after an hour of inactivity. Then we could consistently update this.location, which is how we could access the location object for the distance function -- Not currently used at all...
-    this.location = {
-        latitude: undefined,
-        longitude: undefined    
-    }; 
+    //If we set getLocation() to watch for the geolocation, we could start watching as soon as a user logs in, then turn it off after an hour of inactivity. Then we could consistently update this.userLocation, which is how we could access the location object for the distance function -- Not currently used at all...
+    this.userLocation = undefined; 
     
     this.blockList = []; //Add blockList of UIDs so we can check if the close user is blocked
     this.closeList = []; //Keep closeList because we'll generate it at the end
@@ -35,14 +32,18 @@ function newUser(ID) {
             "Location: " + loc.coords.latitude + ", " + loc.coords.longitude;*/
         
         //Save the location object to this.location
-        this.location.latitude = loc.coords.latitude;
-        this.location.longitude = loc.coords.longitude;
+        this.userLocation.latitude = loc.coords.latitude;
+        this.userLocation.longitude = loc.coords.longitude;
         
         //return loc; //This should get getLocation to return the location object
     };
     this.getLocation = function() {
+        var tempParentObject = this;
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(this.showLocation);
+            navigator.geolocation.getCurrentPosition(function(loc) { //Anonymous callback function that saves the position object to a property of the user class
+                tempParentObject.userLocation = loc;
+                }
+            );
         } else {
             /*document.getElementById("demo").innerHTML =  
                 "<p>Geolocation is not supported by this browser.</p>";*/
@@ -54,8 +55,8 @@ function newUser(ID) {
     this.getDistance = function(user1) {
         var dist, locObj0, locObj1, lat0, long0, lat1, long1, earthRadius = 6371000; //Meters
         //Get the location objects for current user and possible close user
-        locObj0 = this.location;
-        locObj1 = user1.location;
+        locObj0 = this.userLocation;
+        locObj1 = user1.userLocation;
                 
         //Get the location coordinates for each user
         lat0 = locObj0.coords.latitude;
