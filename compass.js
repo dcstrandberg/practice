@@ -4,6 +4,11 @@ var lat, long, i=0, htmlText = "", distance = null, watchID;
 var demoRef = document.getElementById("demo");
 
 var homeLat = 44.940601, homeLong = -93.156662;
+var settings = {
+    enableHighAccuracy: true,
+    timeout: 10000,
+    maximumAge: 0
+};
 
 function compassOff() {
     //Also switch the button classes
@@ -23,7 +28,7 @@ function updateText(loc) {
 function compassOn() {
         if (navigator.geolocation) {
             //watchPosition returns an ID for clearing it later
-            watchID = navigator.geolocation.watchPosition(updateText);/*function(loc) { //Anonymous callback function that saves the position object to a property of the user class
+            watchID = navigator.geolocation.watchPosition(updateText, onError, settings);/*function(loc) { //Anonymous callback function that saves the position object to a property of the user class
                 demoRef.innerHTML = getDistance(loc);
                 }
             );*/    
@@ -34,7 +39,11 @@ function compassOn() {
             demoRef.innerHTML = "Error!";
         }
     return;
-    }
+}
+
+function onError(err) {
+    demoRef.innerHTML = "Error(" + err.code + "): " + error.message;
+}    
     
 function getDistance(locObj) {
         var dist, lat0, long0, earthRadius = 6371000; //Meters 
