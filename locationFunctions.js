@@ -15,7 +15,7 @@ for (i=0; i<100; i++) {
 /*Include a stripped down user class that will contain ID and location*/
 function newUser(ID) {
     this.ID = ID;
-    this.distance; //The distance should be part of the stripped down user class that we use to populate the closeList. Because at this point each user can modify each other user's distance, which will cause a whole bunch of problems. 
+    this.distance = undefined; //The distance should be part of the stripped down user class that we use to populate the closeList. Because at this point each user can modify each other user's distance, which will cause a whole bunch of problems. 
     
     //Generate random maxDistance between .5 and 2.5 in .5 steps
     this.maxDistance = ( ( Math.floor( (Math.random() * 5 ) ) / 2) + 0.5);
@@ -117,10 +117,10 @@ function newUser(ID) {
         //IF WE WANNA SORT IT BY USERS THAT HAVE POSITIVE RATINGS, THIS IS WHERE WE'D DO THAT. OR PERHAPS IN ANOTHER FUNCTION THAT GETS CALLED HERE
         
         //Temporarily add HTML display code
-        var ref = document.getElementById("closelist").innerHTML;
-        ref = "";
+        var ref = document.getElementById("closelist");
+        ref.innerHTML = "";
         for (i=0; i < this.closeList.length; i++) {
-            ref += "<p id='close" + i + "'>User #" + this.closeList[i].ID + 
+            ref.innerHTML += "<p id='close" + i + "'>User #" + this.closeList[i].ID + 
             ": " + this.closeList[i].distance.toFixed(1) + " km away</p>";
         }
         
