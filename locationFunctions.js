@@ -5,7 +5,9 @@ var geoInfo, i=0, j=0, userList=[], htmlText = "";
 /*First we'll generate a list of 100 users*/
 for (i=0; i<100; i++) {
     userList[i] = new newUser(i);
+    userList[i].getLocation(); //We'll do this here first because it takes time to get the position info
 }
+
 
 //Then in the HTML we'll check location for the first user against all the rest
 
@@ -13,7 +15,8 @@ for (i=0; i<100; i++) {
 /*Include a stripped down user class that will contain ID and location*/
 function newUser(ID) {
     this.ID = ID;
-    this.distance;
+    this.distance = undefined; //The distance should be part of the stripped down user class that we use to populate the closeList. Because at this point each user can modify each other user's distance, which will cause a whole bunch of problems. 
+    
     //Generate random maxDistance between .5 and 2.5 in .5 steps
     this.maxDistance = ( ( Math.floor( (Math.random() * 5 ) ) / 2) + 0.5);
     
@@ -53,8 +56,12 @@ function newUser(ID) {
     };
     
     this.getDistance = function(user1) {
-        var dist, locObj0, locObj1, lat0, long0, lat1, long1, earthRadius = 6371000; //Meters
+        var dist, locObj0, locObj1, lat0, long0, lat1, long1;
+        var earthRadius = 6371000; //Meters
         //Get the location objects for current user and possible close user
+        //this.getLocation();
+        //user1.getLocation();
+        //THERE NEEDS TO BE A WAIT HERE OR SOMETHING. The location isn't updated until a little later. For now we'll do it at the beginning of this script
         locObj0 = this.userLocation;
         locObj1 = user1.userLocation;
                 
@@ -64,38 +71,44 @@ function newUser(ID) {
         lat1 = locObj1.coords.latitude;
         long1 = locObj1.coords.longitude;
         
-        //Convert lat and differences to radians
-        lat0 = lat0.toRadians();
-        lat1 = lat1.toRadians();
-        deltaLat = (lat1 - lat0).toRadians();
-        deltaLong = (long1 - long0).toRadians();
+        //Get the differences in lat and long and convert to radians
+        deltaLat = (lat1 - lat0) * Math.PI / 180;
+        deltaLong = (long1 - long0) * Math.PI / 180;
         
-        var a = Math.sin(deltaLat/2) * Math.sin(deltaLat/2) +
-                Math.cos(lat0) * Math.cos(lat1) *
-                Math.sin(deltaLong/2) * Math.sin(deltaLong/2);
-        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-        var dist = earthRadius * c;
+        var a = 
+            0.5 - Math.cos(deltaLat)/2 + 
+            Math.cos(lat0 * Math.PI / 180) * Math.cos(lat1 * Math.PI / 180) * 
+            (1 - Math.cos(deltaLong))/2;
+        
+        var dist = earthRadius * 2 * Math.asin(Math.sqrt(a));
         
         return dist;
     };
     this.genCloseList = function () {
-        //First clear closeList of previous value
+        //First output a loading message
+        document.getElementById("closelist").innerHTML = "Loading...";
+        
+        //Clear closeList of previous value
         this.closeList = [];
         var currentDist = undefined;
         //For every user in the "database"
         for (i=0; i < userList.length; i++) { 
         //in the future we'll check a database for the list of users instead.
         
-            //If the user is close enough and NOT the user who's looking...
-            currentDist = this.getDistance(userList[i]); 
-            if ( currentDist <= this.maxDistance && this !== userList[i] ) {
-
-                //If the close User doesn't match the ID of a blocked user...
-                if ( this.blockList.indexOf( userList[i].ID ) < 0 ) {
+            //Don't check distance for the current user
+            if ( this !== userList[i] ) {
                 
-                    //THEN we can add the current user to closeList
-                    this.closeList.push(userList[i]); 
-                    userList[i].distance = currentDist;
+                //If the user is close enough...
+                currentDist = this.getDistance(userList[i]); 
+                if ( currentDist <= this.maxDistance ) {
+
+                    //If the close User doesn't match the ID of a blocked user...
+                    if ( this.blockList.indexOf( userList[i].ID ) < 0 ) {
+                
+                        //THEN we can add the current user to closeList
+                        this.closeList.push(userList[i]); 
+                        userList[i].distance = currentDist;
+                    }      
                 }
             }
         }
@@ -104,9 +117,11 @@ function newUser(ID) {
         //IF WE WANNA SORT IT BY USERS THAT HAVE POSITIVE RATINGS, THIS IS WHERE WE'D DO THAT. OR PERHAPS IN ANOTHER FUNCTION THAT GETS CALLED HERE
         
         //Temporarily add HTML display code
+        var ref = document.getElementById("closelist");
+        ref.innerHTML = "";
         for (i=0; i < this.closeList.length; i++) {
-            htmlText += "<p id='close" + i + "'>User #" + closeList[i].ID + 
-            ": " + closeList[i].distance.toFixed(1) + " km away</p>";
+            ref.innerHTML += "<p id='close" + i + "'>User #" + this.closeList[i].ID + 
+            ": " + this.closeList[i].distance.toFixed(1) + " km away</p>";
         }
         
         return;
