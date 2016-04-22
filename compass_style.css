@@ -1,7 +1,7 @@
 body {
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #fffAff;
+    background-color: #eeeeee;
     margin: 0px;
     padding: 0px;
 }
@@ -37,7 +37,7 @@ button.active {
     background-color: #BB4c30;
     color: #eeeeee;
 }
-button:active {
+/*button:active {
     background-color: #881c00;
     color: #ffffff;
-}
+}*/

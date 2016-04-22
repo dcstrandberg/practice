@@ -1,16 +1,35 @@
 
 
-var lat, long, i=0, htmlText = "", distance = null;
+var lat, long, i=0, htmlText = "", distance = null, watchID;
 var demoRef = document.getElementById("demo");
 
-let homeLat = 44.940601, homeLong = -93.156662;
+var homeLat = 44.940601, homeLong = -93.156662;
 
-function getLocation() {
+function compassOff() {
+    //Also switch the button classes
+    document.getElementById("off").className = "active";
+    document.getElementById("on").className = "inactive";
+    
+    //When Off is pressed, clear the watcher and reset the HTML
+    navigator.geolocation.clearWatch(watchID);
+    demoRef.innerHTML = "...";
+
+}
+
+function updateText(loc) {
+    demoRef.innerHTML = getDistance(loc);
+}
+
+function compassOn() {
         if (navigator.geolocation) {
-            navigator.geolocation.watchPosition(function(loc) { //Anonymous callback function that saves the position object to a property of the user class
+            //watchPosition returns an ID for clearing it later
+            watchID = navigator.geolocation.watchPosition(updateText);/*function(loc) { //Anonymous callback function that saves the position object to a property of the user class
                 demoRef.innerHTML = getDistance(loc);
                 }
-            );
+            );*/    
+            //Also switch the button classes
+            document.getElementById("off").className = "inactive";
+            document.getElementById("on").className = "active";
         } else {
             demoRef.innerHTML = "Error!";
         }
@@ -18,28 +37,23 @@ function getLocation() {
     }
     
 function getDistance(locObj) {
-        var dist, locObj0, locObj1, lat0, long0, lat1, long1, earthRadius = 6371000; //Meters
-        //Get the location objects for current user and possible close user
-        var homeLat = 
-        var homeLong =                 
-        //Get the location coordinates for each user
-        lat0 = locObj0.coords.latitude;
-        long0 = locObj0.coords.longitude;
-        lat1 = locObj1.coords.latitude;
-        long1 = locObj1.coords.longitude;
+        var dist, lat0, long0, earthRadius = 6371000; //Meters 
+                     
+        //Get the location coordinates
+        lat0 = locObj.coords.latitude;
+        long0 = locObj.coords.longitude;
         
-        //Convert lat and differences to radians
-        lat0 = lat0.toRadians();
-        lat1 = lat1.toRadians();
-        deltaLat = (lat1 - lat0).toRadians();
-        deltaLong = (long1 - long0).toRadians();
+        //Get the differences in lat and long and convert to radians
+        var deltaLat = (homeLat - lat0) * Math.PI / 180;
+        var deltaLong = (homeLong - long0) * Math.PI / 180;
         
-        var a = Math.sin(deltaLat/2) * Math.sin(deltaLat/2) +
-                Math.cos(lat0) * Math.cos(lat1) *
-                Math.sin(deltaLong/2) * Math.sin(deltaLong/2);
-        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-        var dist = earthRadius * c;
-        
-        return dist;
+        var a = 
+            0.5 - Math.cos(deltaLat)/2 + 
+            Math.cos(lat0 * Math.PI / 180) * Math.cos(homeLat * Math.PI / 180) * 
+            (1 - Math.cos(deltaLong))/2;
+        //Round the distance to 1 decimal point
+        var dist = (earthRadius * 2 * Math.asin( Math.sqrt(a) ) ).toFixed(1);
+        //Add the units
+        return (dist + " m");
     }
 
