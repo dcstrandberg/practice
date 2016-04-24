@@ -10,13 +10,10 @@
         $(document).ready(function() { //Only execute once the document's loaded
             //jQuery methods go here...
             //when hoving over the "button", fade in a box-shadow to make it look like it's rising off the page.
-            $("#button").hover(function(){
+            $("#closebutton").hover(function(){
                 $("#shadow").fadeIn(400);
             }, function(){
                 $("#shadow").fadeOut(400);
-            });
-            $("#button").click(function(){
-               $(this).css("background-color","red"); 
             });
         });
     </script>
@@ -34,15 +31,15 @@
 <img id="menu" src="images/menu-icon.png" width="60px" height="60px" />
 </header>
 
-<h2 class="title">Close List</h2>
+<div id="top">
+<h2 class="title">Get Close Tonight</h2>
 
-<p>Click HERE to get close to someone.</p>
 <!--<button id="locationButton" onclick="userList[0].genCloseList()">Get Close</button> -->
-<button id="button" style="background:#98bf21;height:100px;width:100px;border:none;position:absolute;padding:0px;margin:0px;" onclick="userList[0].genCloseList()">
-<div id="shadow" style="z-index:-1;height:100px;width:100px;position:absolute;top:0;left:0;box-shadow:1px 5px 15px 3px lightgrey, 1px 5px 15px grey;display:none;padding:0px;margin:0px;">
-</div>
+<button id="closebutton" onclick="userList[0].genCloseList()">
+<!--<div id="shadow" style="z-index:-1;height:100px;width:100px;position:absolute;top:0;left:0;box-shadow:1px 5px 15px 3px lightgrey, 1px 5px 15px grey;display:none;padding:0px;margin:0px;">
+</div>-->
 Get Close</button>
-
+</div>
 <br />
 
 <p id="closelist"></p>

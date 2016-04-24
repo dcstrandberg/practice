@@ -15,6 +15,7 @@ for (i=0; i<100; i++) {
 /*Include a stripped down user class that will contain ID and location*/
 function newUser(ID) {
     this.ID = ID;
+    this.pic = "images/user_icon.png";
     this.distance = undefined; //The distance should be part of the stripped down user class that we use to populate the closeList. Because at this point each user can modify each other user's distance, which will cause a whole bunch of problems. 
     
     //Generate random maxDistance between .5 and 2.5 in .5 steps
@@ -119,9 +120,13 @@ function newUser(ID) {
         //Temporarily add HTML display code
         var ref = document.getElementById("closelist");
         ref.innerHTML = "";
+        //For each close user create a new <p> with the id of the userID
+        //And the class of info that will float it right.  
         for (i=0; i < this.closeList.length; i++) {
-            ref.innerHTML += "<p id='close" + i + "'>User #" + this.closeList[i].ID + 
-            ": " + this.closeList[i].distance.toFixed(1) + " km away</p>";
+            ref.innerHTML += "<p id='close" + this.closeList[i].ID +
+                "'><img src='" + this.closeList[i].pic + 
+                "'> User #" + this.closeList[i].ID + ":<span class='dist'>" + 
+                this.closeList[i].distance.toFixed(1) + " km away</span></p>";
         }
         
         return;
