@@ -1,0 +1,132 @@
+body {
+    background-color: #efefef;  
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+}
+header {
+    /*Set the header to be at the top of the page even when scrolling*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    margin: 0px;
+    padding: 0px;
+    /*When we scroll, we want the header to stay above everything*/
+    z-index: 10; 
+    
+    /*Use flex containers and have the space between be equal*/
+    display: flex;  
+    display: -webkit-flex; 
+    align-items: flex-end;
+     
+    background: linear-gradient(#ccffff, #efefef);
+    border-bottom: 4px solid #f08a6f;
+}
+
+img#usericon {
+    border: 1px solid red;
+    width: 100px;
+    height: 100px;
+
+    /*Center it vertically in the header*/
+    padding: 10px;
+}
+
+img#logo {
+    border: 1px solid green;
+    padding: 10px 0px; 
+    height: 100px;
+    width: auto;
+    
+    /*Save room on the left for the user icon*/
+    margin-left: auto;
+    margin-right: 50px;
+}
+ul.navbar {          
+    border: 1px solid black;
+    /*Unordered List Used As Menu*/
+    list-style-type: none;
+    /*Placed directly after the logo with a margin. At bottom of header*/
+    min-width: 100px;
+    height: auto;
+    
+    /*Keep it spaced from the nav menu*/
+    /*margin-left: -100px;*/
+    margin-bottom: -4px;
+    margin-right: auto;
+    
+}
+ul.navbar li {
+    display: inline-block;
+    /*border: 3px dashed green;*/
+}
+ul.navbar li.active {
+    border-bottom: 4px solid #ff0a00;
+}
+img.icon {
+    height: 40px;
+    width: 40px; 
+    padding: 5px;
+    padding-bottom: 0px;
+    margin: 0px;
+}
+img#menu {
+    /*border: 1px solid red;*/
+    
+    /*Center it vertically in the header*/
+    padding: 30px 10px;
+    opacity: 0.65;
+}
+
+h2.title {
+    position: relative;
+    margin-top: 140px;
+    margin-left: 20px;
+}
+fieldset {
+    position: relative;
+    margin: 20px;
+    width: 90%;
+    border: 2px solid grey;
+    border-radius: 4px;
+    background-color: lightgrey;
+    color: black;
+}
+input {
+    width: 100%;
+    border: 3px solid grey;
+    border-radius: 4px;    
+    font-size: 16px;
+    outline: none;
+}
+input[type=text], input[type=number], input[type=search] {
+    padding: 12px 20px;
+    margin: 8px 0px;
+    box-sizing: border-box;
+    
+}
+input:focus {
+    border-color: #f08a6f;
+    
+}
+#search {
+    background: #FFFFFF url("images/glassicon.png") no-repeat;
+    background-size: 30px 30px;
+    background-position: 10px 6px;
+    padding-left: 58px;
+}
+ul#genderButton {
+    list-style: none;
+    width: 100%;
+    margin: auto;
+    border: 1px solid black;
+}
+li.gender {
+    display: inline-block;
+    padding: 0px;
+
+}
+input[type=radio] {
+    width: 28px;
+}
