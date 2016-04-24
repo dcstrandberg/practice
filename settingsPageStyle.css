@@ -25,7 +25,7 @@ header {
 }
 
 img#usericon {
-    border: 1px solid red;
+    /*border: 1px solid red;*/
     width: 100px;
     height: 100px;
 
@@ -34,7 +34,7 @@ img#usericon {
 }
 
 img#logo {
-    border: 1px solid green;
+    /*border: 1px solid green;*/
     padding: 10px 0px; 
     height: 100px;
     width: auto;
@@ -44,7 +44,7 @@ img#logo {
     margin-right: 50px;
 }
 ul.navbar {          
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     /*Unordered List Used As Menu*/
     list-style-type: none;
     /*Placed directly after the logo with a margin. At bottom of header*/
@@ -80,10 +80,13 @@ img#menu {
 }
 
 h2.title {
-    position: relative;
+    /*position: relative;*/
     margin-top: 140px;
     margin-left: 20px;
 }
+
+
+/*Specifically for Settings Page*/
 fieldset {
     position: relative;
     margin: 20px;
