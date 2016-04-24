@@ -1,67 +1,64 @@
 body {
     background-color: #efefef;  
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
 }
 header {
     /*Set the header to be at the top of the page even when scrolling*/
     position: fixed;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 120px;
+    margin: 0px;
+    padding: 0px;
     /*When we scroll, we want the header to stay above everything*/
     z-index: 10; 
     
-    width: 100%;
-    height: 120px;
+    /*Use flex containers and have the space between be equal*/
+    display: flex;  
+    display: -webkit-flex; 
+    align-items: flex-end;
+     
     background: linear-gradient(#ccffff, #efefef);
-    margin: 0px;
-    padding: 0px;
     border-bottom: 4px solid #f08a6f;
 }
 
 img#usericon {
-    /*border: 1px solid red;*/
-    display: inline-block;
-    position: relative;
-    left: 0px;
-    top: 0px;
+    border: 1px solid red;
+    width: 100px;
+    height: 100px;
+
     /*Center it vertically in the header*/
     padding: 10px;
 }
 
 img#logo {
-    /*border: 1px solid green;*/
-    display: inline-block;
-    position: relative;
-    top: 0;
+    border: 1px solid green;
     padding: 10px 0px; 
-    min-width: 450px;
-    /*Save room on the left for the user icon*/
-    margin-left: 150px;
+    height: 100px;
+    width: auto;
     
-    /*The image itself has a large right margin, so no need for extra*/
-    margin-right: 0;
+    /*Save room on the left for the user icon*/
+    margin-left: auto;
+    margin-right: 50px;
 }
-   
 ul.navbar {          
-    /*border: 1px solid black;*/ 
+    border: 1px solid black;
     /*Unordered List Used As Menu*/
     list-style-type: none;
     /*Placed directly after the logo with a margin. At bottom of header*/
-    display: inline-block;
-    position: absolute;
-    bottom: -4px;
-    
-    
-    margin: 0px;
-    /*Keep it spaced from the nav menu*/
-    margin-left: -100px;
-    margin-right: 30px;
     min-width: 100px;
+    height: auto;
+    
+    /*Keep it spaced from the nav menu*/
+    /*margin-left: -100px;*/
+    margin-bottom: -4px;
+    margin-right: auto;
+    
 }
 ul.navbar li {
     display: inline-block;
-    padding: 0px;
-    margin: 0px;
     /*border: 3px dashed green;*/
 }
 ul.navbar li.active {
@@ -73,14 +70,9 @@ img.icon {
     padding: 5px;
     padding-bottom: 0px;
     margin: 0px;
-
 }
 img#menu {
     /*border: 1px solid red;*/
-    display: inline-block;
-    position: absolute;
-    right: 0px;
-    top: 0px;
     
     /*Center it vertically in the header*/
     padding: 30px 10px;
