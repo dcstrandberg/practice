@@ -123,10 +123,10 @@ function newUser(ID) {
         //For each close user create a new <p> with the id of the userID
         //And the class of info that will float it right.  
         for (i=0; i < this.closeList.length; i++) {
-            ref.innerHTML += "<p id='close" + this.closeList[i].ID +
+            ref.innerHTML += "<div id='closeuser" + this.closeList[i].ID +
                 "'><img src='" + this.closeList[i].pic + 
                 "'> User #" + this.closeList[i].ID + ":<span class='dist'>" + 
-                this.closeList[i].distance.toFixed(1) + " km away</span></p>";
+                this.closeList[i].distance.toFixed(1) + " km away</span></div>";
         }
         
         return;
