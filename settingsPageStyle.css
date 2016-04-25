@@ -109,7 +109,7 @@ button, input[type="button"] {
     border: 1px solid #f08a6f;
     
     box-shadow: 1px 5px 15px 3px lightgrey;
-    transition: box-shadow 0.6s;
+    transition: box-shadow 0.5s;
 }
 button:active, input[type="button"]:active {
     box-shadow: 1px 5px 15px 3px lightgrey;
@@ -119,6 +119,10 @@ button:hover, input[type="button"]:hover {
         2px 6px 20px #777777;
 }
 /*Style the generated <p> of user info inside <p id='closelist'>*/
+#closelist {
+    /*Don't show the horizontal scroll bar when the element slides right*/
+    overflow: hidden;
+}
 #closelist div {
     display: flex;
     height: 60px;
@@ -126,7 +130,7 @@ button:hover, input[type="button"]:hover {
     align-items: flex-end;
     
     padding: 5px;
-    margin: 5px;
+    margin: 0px;
     border-top: 1px solid #f08a6f;
 }
 #closelist div img {
