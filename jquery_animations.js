@@ -1,4 +1,5 @@
-$(document).ready(function() { //Only execute once the document's loaded
+$.noConflict(); //Added in the noConflict method and changed the $ to jQuery for the document.ready method so that in case we use another framework that uses the $ shortcut, jQuery won't get confused. 
+jQuery(document).ready(function($) { //Only execute once the document's loaded
     //jQuery methods go here... We wanna add in "swipe" functionality
     //userList[0].genCloseList();
     $("#closebutton").click(function() {
