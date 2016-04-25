@@ -31,15 +31,9 @@ function newUser(ID) {
     //LOCATION SHOULDN'T BE DIRECTLY ACCESSIBLE. IT SHOULD BE ENCASED IN A FUNCTION BUT HOW DO YOU DO THAT WITH TWO USERS.
     //For now we'll just have it be a function
     this.showLocation = function(loc) {
-        //return loc; //Returns a location object for passing to distance function
-        /*document.getElementById("demo").innerHTML = 
-            "Location: " + loc.coords.latitude + ", " + loc.coords.longitude;*/
-        
         //Save the location object to this.location
         this.userLocation.latitude = loc.coords.latitude;
         this.userLocation.longitude = loc.coords.longitude;
-        
-        //return loc; //This should get getLocation to return the location object
     };
     this.getLocation = function() {
         var tempParentObject = this;
@@ -49,9 +43,7 @@ function newUser(ID) {
                 }
             );
         } else {
-            /*document.getElementById("demo").innerHTML =  
-                "<p>Geolocation is not supported by this browser.</p>";*/
-                document.getElementById("error").innerHTML = "Location information not available";
+            document.getElementById("error").innerHTML = "Location information not available";
         }
     return;
     };
